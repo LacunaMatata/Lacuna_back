@@ -1,7 +1,7 @@
 package LacunaMatata.Lacuna.security.filter;
 
 
-import LacunaMatata.Lacuna.entity.User;
+import LacunaMatata.Lacuna.entity.user.User;
 import LacunaMatata.Lacuna.repository.UserMapper;
 import LacunaMatata.Lacuna.security.jwt.JwtProvider;
 import LacunaMatata.Lacuna.security.principal.PrincipalUser;

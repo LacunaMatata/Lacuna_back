@@ -1,4 +1,4 @@
-package LacunaMatata.Lacuna.entity;
+package LacunaMatata.Lacuna.entity.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +19,6 @@ import lombok.NoArgsConstructor;
 public class UserRole {
     private int roleId;
     private String roleName;
-    private String description;
+    private String roleDescription;
     private String roleImg;
 }

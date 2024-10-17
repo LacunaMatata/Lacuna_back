@@ -1,10 +1,8 @@
 package LacunaMatata.Lacuna.service;
 
-import LacunaMatata.Lacuna.dto.request.ReqAccessTokenDto;
-import LacunaMatata.Lacuna.entity.User;
+import LacunaMatata.Lacuna.entity.user.User;
 import LacunaMatata.Lacuna.repository.UserMapper;
 import LacunaMatata.Lacuna.security.jwt.JwtProvider;
-import com.nimbusds.oauth2.sdk.dpop.verifiers.AccessTokenValidationException;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

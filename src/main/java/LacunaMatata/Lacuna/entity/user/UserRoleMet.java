@@ -1,4 +1,4 @@
-package LacunaMatata.Lacuna.entity;
+package LacunaMatata.Lacuna.entity.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
