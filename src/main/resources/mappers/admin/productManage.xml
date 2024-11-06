@@ -7,6 +7,10 @@
     <resultMap id="productResultMap" type="LacunaMatata.Lacuna.entity.product.Product">
         <id property="productId" column="product_id" />
         <result property="productProductUpperCategoryId" column="product_product_upper_category_id" />
+<<<<<<< HEAD
+=======
+        <result property="productLowerCategoryId" column="p_product_lower_category_id" />
+>>>>>>> 71c51673d40f970459e025ac21320c5251a1f061
         <result property="productCode" column="product_code" />
         <result property="productName" column="product_name" />
         <result property="price" column="price" />
@@ -20,15 +24,15 @@
         <association property="productLowerCategory" resultMap="productLowerCategoryResultMap2" />
     </resultMap>
     <resultMap id="productUpperCategoryResultMap2" type="LacunaMatata.Lacuna.entity.product.ProductUpperCategory">
-        <id property="productUpperCategoryId" column="product_upper_category_id" />
-        <result property="productUpperCategoryName" column="product_upper_category_name" />
+        <id property="productUpperCategoryId" column="puc_product_upper_category_id" />
+        <result property="productUpperCategoryName" column="puc_product_upper_category_name" />
         <result property="productUpperCategoryRegisterId" column="product_upper_category_register_id" />
         <result property="createDate" column="create_date" />
         <result property="updateDate" column="update_date" />
     </resultMap>
     <resultMap id="productLowerCategoryResultMap2" type="LacunaMatata.Lacuna.entity.product.ProductLowerCategory">
-        <id property="productLowerCategoryId" column="product_lower_category_id" />
-        <result property="productUpperCategoryId" column="product_upper_category_id" />
+        <id property="productLowerCategoryId" column="plc_product_lower_category_id" />
+        <result property="productUpperCategoryId" column="plc_product_upper_category_id" />
         <result property="productLowerCategoryName" column="product_lower_category_name" />
         <result property="productUpperCategoryName" column="productUpperCategoryName" />
         <result property="productLowerCategoryRegisterId" column="product_lower_category_register_id" />
@@ -36,12 +40,17 @@
         <result property="updateDate" column="update_date" />
     </resultMap>
     <resultMap id="UpperAndLowerResultMap" type="LacunaMatata.Lacuna.dto.response.admin.product.RespUpperProductCategoryAndLowerDto">
-        <result property="productUpperCategoryId" column="product_upper_category_id" />
+        <id property="productUpperCategoryId" column="product_upper_category_id" />
         <result property="productUpperCategoryName" column="product_upper_category_name" />
+<<<<<<< HEAD
         <collection property="productLowerCategoryAndProduct" javaType="java.util.List" resultMap="productLowerCategoryResultMap3"/>
+=======
+        <collection property="productLowerCategoryAndProduct" javaType="java.util.ArrayList" resultMap="productLowerCategoryResultMap3" />
+>>>>>>> 71c51673d40f970459e025ac21320c5251a1f061
     </resultMap>
-    <resultMap id="productLowerCategoryResultMap3" type="LacunaMatata.Lacuna.dto.response.admin.product.RespLowerProductCategoryDto">
-        <result property="productLowerCategoryId" column="product_lower_category_id" />
+    <resultMap id="productLowerCategoryResultMap3" type="LacunaMatata.Lacuna.dto.response.admin.product.RespLowerCategoryAndProductDto">
+        <id property="productLowerCategoryId" column="product_lower_category_id" />
+        <result property="productUpperCategoryId" column="plc_product_upper_category_id" />
         <result property="productLowerCategoryName" column="product_lower_category_name" />
     </resultMap>
     <resultMap id="productUpperCategoryResultMap" type="LacunaMatata.Lacuna.entity.product.ProductUpperCategory">
@@ -108,7 +117,7 @@
         insert into tb_product
         values(
             default,
-            #{productUpperCategoryId},
+            #{productProductUpperCategoryId},
             #{productLowerCategoryId},
             #{productCode},
             #{productName},
@@ -168,7 +177,7 @@
         update
             tb_product
         set
-            product_upper_category_id = #{productUpperCategoryId},
+            product_product_upper_category_id = #{productProductUpperCategoryId},
             product_lower_category_id = #{productLowerCategoryId},
             product_code = #{productCode},
             product_name = #{productName},
@@ -308,16 +317,17 @@
         where
             product_lower_category_id = #{lowerId}
     </select>
+
     <select id="getProductUpperAndLowerCategoryList" resultMap="UpperAndLowerResultMap">
         select
             puc.product_upper_category_id,
             puc.product_upper_category_name,
             plc.product_lower_category_id,
+            plc.product_upper_category_id as plc_product_upper_category_id,
             plc.product_lower_category_name
         from
             tb_product_upper_category puc
-            left outer join tb_product_lower_category plc
-                on (puc.product_upper_category_id = plc.product_upper_category_id)
+            left outer join tb_product_lower_category plc on(plc.product_upper_category_id = puc.product_upper_category_id)
     </select>
     <select id="getProductList" resultMap="productResultMap">
         select
@@ -329,14 +339,16 @@
             p.promotion_price,
             p.product_register_id,
             p.create_date,
+            p.description,
+            p.etc,
             u.user_id,
             u.name,
             count(*) over () as totalCount,
-            p.product_lower_category_id,
-            plc.product_lower_category_id,
-            plc.product_upper_category_id,
-            puc.product_upper_category_id,
-            puc.product_upper_category_name
+            p.product_lower_category_id as p_product_lower_category_id,
+            plc.product_lower_category_id as plc_product_lower_category_id,
+            plc.product_upper_category_id as plc_product_upper_category_id,
+            puc.product_upper_category_id as puc_product_upper_category_id,
+            puc.product_upper_category_name as puc_product_upper_category_name
         from
             tb_product p
             left outer join

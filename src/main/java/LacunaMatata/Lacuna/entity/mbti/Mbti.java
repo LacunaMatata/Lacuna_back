@@ -26,6 +26,10 @@ public class Mbti {
     private int totalCount;
 
     // 매핑 목적
+    private String name;
+    private String mbtiCategoryName;
+
+    // 조인 목적
     private MbtiCategory mbtiCategory;
     private User user;
     private MbtiOption mbtiOption;

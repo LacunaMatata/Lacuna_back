@@ -88,6 +88,14 @@ public class ProductManageController {
         return ResponseEntity.ok().body(respCountAndLowerProductDto);
     }
 
+    // 상품 하위 분류 등록 모달창 출력
+    @GetMapping("/lower/regist/modal")
+    @ApiOperation(value = "getLowerCategiryRegistModalApi")
+    public ResponseEntity<?> getLowerCategiryRegistModal() {
+        List<RespUpperProductCategoryDto> productUpperCategoryList = productManageService.lowerRegistCategoryModal();
+        return ResponseEntity.ok().body(productUpperCategoryList);
+    }
+
     // 상품 하위 분류 카테고리 등록
     @PostMapping("/lower/regist")
     @ApiOperation(value = "registLowerProductApi")
@@ -97,7 +105,7 @@ public class ProductManageController {
         return ResponseEntity.ok().body(true);
     }
 
-    // 상품 하위 분류 카테고리 항목 출력
+    // 상품 하위 분류 카테고리 수정 모달창 출력
     @GetMapping("/lower/{lowerId}")
     @ApiOperation(value = "getLowerProductApi")
     public ResponseEntity<?> getLowerProduct(@PathVariable int lowerId) {
@@ -153,7 +161,7 @@ public class ProductManageController {
         return ResponseEntity.ok().body(true);
     }
 
-    // 상품 항목 출력
+    // 상품 수정 모달창 출력
     @ProductDetailAop
     @GetMapping("/{productId}")
     @ApiOperation(value = "getProductApi")

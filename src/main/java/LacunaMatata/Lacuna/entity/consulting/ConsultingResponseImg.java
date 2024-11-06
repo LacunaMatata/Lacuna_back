@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class ConsultingResponseImg {
     private int consultingResponseImgId;
     private int consultingResponseImgConsultingResponseId;
-    private String imgPathk;
+    private String imgPath;
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 @Builder
 @Data
 public class RespLowerProductCategoryDto {
-    private int productLowerCategoryId;
+    private Integer productLowerCategoryId;
+    private Integer productUpperCategoryId;
     private String productLowerCategoryName;
 }

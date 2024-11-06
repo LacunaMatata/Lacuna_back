@@ -63,16 +63,16 @@ public interface ProductManageMapper {
     int modifyProduct(Product product);
     // 10-1. 상품 상위카테고리가 컨설팅인 상품일 때 컨설팅 모달창 수정_2024.10.26
     int modifyConsultingDetail(ConsultingDetail consultingDetail);
-    // 10-2. 상품 상위카테고리가 컨설팅인 상품일 때 컨설팅 모달창 수정_2024.10.26
-    int modifyConsultingContent(ConsultingContent consultingContent);
+//    // 10-2. 상품 상위카테고리가 컨설팅인 상품일 때 컨설팅 모달창 수정_2024.10.26 - 삭제
+//    int modifyConsultingContent(ConsultingContent consultingContent);
     // 11. 상품 상위카테고리가 화장품인 상품일 때 화장품 모달창_2024.10.26
     int modifyCosmeticDetail(CosmeticDetail cosmeticDetail);
     // 12. 상품 단일 삭제_2024.10.26
     int deleteProduct(int productId); // 상품 삭제
     // 13. 상품 복수 삭제_2024.10.26
     int deleteProductList(List<Integer> productIdList);
-    // 14. 상품 이미지 등록
-    int insertProductImg(String insertCompletedImgPath, int productId);
+//    // 14. 상품 이미지 등록 - 삭제
+//    int insertProductImg(String insertCompletedImgPath, int productId);
 
     /** 상품 관련 공통으로 필요한 메서드 Mapper */
     // 1. 상품 상위 분류 이름으로 상품 상위 분류 정보 찾기_2024.10.26

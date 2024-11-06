@@ -25,6 +25,8 @@
         <result property="totalCount" column="totalCount" />
         <result property="createDate" column="create_date" />
         <result property="updateDate" column="update_date" />
+        <result property="name" column="name" />
+        <result property="mbtiCategoryName" column="mbtiCategoryName" />
         <association property="user" resultMap="userResultMap" />
         <association property="mbtiCategory" resultMap="mbtiCategoryResultMap" />
         <association property="mbtiOption" resultMap="mbtiOptionResultMap" />
@@ -42,7 +44,6 @@
         <result property="mbtiResultTitle" column="mbti_result_title" />
         <result property="mbtiResultSummary" column="mbti_result_summary" />
         <result property="mbtiResultContent" column="mbti_result_content" />
-        <result property="mbtiResultImg" column="mbti_result_img" />
         <result property="mbtiResultStatus" column="mbti_result_status" />
         <result property="totalCount" column="totalCount" />
         <result property="createDate" column="create_date" />
@@ -270,10 +271,10 @@
             m.update_date,
             (select u.name
             from tb_user u
-            where u.user_id = m.mbti_register_id),
+            where u.user_id = m.mbti_register_id) as name,
             (select mc.mbti_category_name
             from tb_mbti_category mc
-            where m.mbti_category_id = mc.mbti_category_id)
+            where m.mbti_category_id = mc.mbti_category_id) as mbtiCategoryName
         from
             tb_mbti m
         where
@@ -286,8 +287,8 @@
             </if>
             <if test="option == 0">
                 <if test="searchValue != null and searchValue != ''">
-                    and m.mbti_code like concat('%', trim(ifnull(#{searchValue}, '')), '%')
-                    or m.mbti_title like concat('%', trim(ifnull(#{searchValue}, '')), '%')
+                    and (m.mbti_code like concat('%', trim(ifnull(#{searchValue}, '')), '%')
+                    or m.mbti_title like concat('%', trim(ifnull(#{searchValue}, '')), '%'))
                 </if>
             </if>
             <if test="option == 1">

@@ -121,6 +121,20 @@ public class ProductManageService {
         return respCountAndLowerProductDto;
     }
 
+    //상품 하위 분류 등록 모달창 출력
+    public List<RespUpperProductCategoryDto> lowerRegistCategoryModal() {
+        List<ProductUpperCategory> productUpperCategoryList = productManageMapper.getProductUpperCategoryList();
+        List<RespUpperProductCategoryDto> respProductUpperCategoryList = new ArrayList<>();
+        for (ProductUpperCategory productUpperCategory : productUpperCategoryList) {
+            RespUpperProductCategoryDto respUpperProductCategoryDto = RespUpperProductCategoryDto.builder()
+                    .productUpperCategoryId(productUpperCategory.getProductUpperCategoryId())
+                    .productUpperCategoryName(productUpperCategory.getProductUpperCategoryName())
+                    .build();
+            respProductUpperCategoryList.add(respUpperProductCategoryDto);
+        }
+        return respProductUpperCategoryList;
+    }
+
     // 상품 하위 분류 카테고리 등록
     public void registProductlowerCategory(ReqRegistLowerProductCategoryDto dto) {
         PrincipalUser principalUser = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -174,11 +188,12 @@ public class ProductManageService {
         Map<String, Object> params = Map.of(
                 "filter", dto.getFilter(),
                 "option", dto.getOption(),
-                "searchValue", dto.getSearchValue(),
+                "searchValue", dto.getSearchValue() == null ? "" : dto.getSearchValue(),
                 "startIndex", startIndex,
                 "limit", dto.getLimit()
         );
         List<Product> productList = productManageMapper.getProductList(params);
+        System.out.println(productList);
         List<RespProductListDto> respProductListDtoList = new ArrayList<RespProductListDto>();
         for(Product product : productList) {
             RespProductListDto respProductListDto = RespProductListDto.builder()
@@ -206,10 +221,10 @@ public class ProductManageService {
     // 상품 등록 모달창 출력
     public RespProductRegistModalDto getRegistModal() {
         List<RespUpperProductCategoryAndLowerDto> productUpperAndLower = productManageMapper.getProductUpperAndLowerCategoryList();
-        List<ConsultingContent> consultingContent = productManageMapper.getConsultingContent();
+//        List<ConsultingContent> consultingContent = productManageMapper.getConsultingContent();
         RespProductRegistModalDto respProductRegistModalDto = RespProductRegistModalDto.builder()
                 .respUpperProductCategoryAndLowerDto(productUpperAndLower)
-                .productConsultingContentList(consultingContent)
+//                .productConsultingContentList(consultingContent)
                 .build();
         return respProductRegistModalDto;
     }
@@ -231,7 +246,11 @@ public class ProductManageService {
         }
 
         Product product = Product.builder()
+<<<<<<< HEAD
                 .productProductUpperCategoryId(dto.getProductProductUpperCategoryId())
+=======
+                .productProductUpperCategoryId(dto.getProductUpperCategoryId())
+>>>>>>> 71c51673d40f970459e025ac21320c5251a1f061
                 .productLowerCategoryId(dto.getProductLowerCategoryId())
                 .productCode(dto.getProductCode())
                 .productName(dto.getProductName())
@@ -323,7 +342,11 @@ public class ProductManageService {
 
         Product product = Product.builder()
                 .productId(dto.getProductId())
+<<<<<<< HEAD
                 .productProductUpperCategoryId(dto.getProductProductUpperCategoryId())
+=======
+                .productProductUpperCategoryId(dto.getProductUpperCategoryId())
+>>>>>>> 71c51673d40f970459e025ac21320c5251a1f061
                 .productLowerCategoryId(dto.getProductLowerCategoryId())
                 .productCode(dto.getProductCode())
                 .productName(dto.getProductName())

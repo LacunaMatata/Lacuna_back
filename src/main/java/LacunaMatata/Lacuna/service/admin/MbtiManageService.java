@@ -133,7 +133,7 @@ public class MbtiManageService {
         Map<String, Object> params = Map.of(
                 "filter", dto.getFilter(),
                 "option", dto.getOption(),
-                "searchValue", dto.getSearchValue(),
+                "searchValue", dto.getSearchValue() == null ? "" : dto.getSearchValue(),
                 "startIndex", startIndex,
                 "limit", dto.getLimit()
         );
@@ -142,7 +142,7 @@ public class MbtiManageService {
         for(Mbti mbti : mbtiQuestionList) {
             RespMbtiQuestionListDto respMbtiQuestionListDto = RespMbtiQuestionListDto.builder()
                     .mbtiId(mbti.getMbtiId())
-                    .mbtiCategoryName(mbti.getMbtiCategory().getMbtiCategoryName())
+                    .mbtiCategoryName(mbti.getMbtiCategoryName())
                     .mbtiTitle(mbti.getMbtiTitle())
                     .name(mbti.getUser().getName())
                     .createdDate(mbti.getCreateDate())
