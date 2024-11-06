@@ -6,7 +6,7 @@
 
     <resultMap id="productResultMap" type="LacunaMatata.Lacuna.entity.product.Product">
         <id property="productId" column="product_id" />
-        <result property="productUpperCategoryId" column="product_upper_category_id" />
+        <result property="productProductUpperCategoryId" column="product_product_upper_category_id" />
         <result property="productCode" column="product_code" />
         <result property="productName" column="product_name" />
         <result property="price" column="price" />
@@ -38,7 +38,7 @@
     <resultMap id="UpperAndLowerResultMap" type="LacunaMatata.Lacuna.dto.response.admin.product.RespUpperProductCategoryAndLowerDto">
         <result property="productUpperCategoryId" column="product_upper_category_id" />
         <result property="productUpperCategoryName" column="product_upper_category_name" />
-        <association property="productLowerCategoryAndProduct" resultMap="productLowerCategoryResultMap3" />
+        <collection property="productLowerCategoryAndProduct" javaType="java.util.List" resultMap="productLowerCategoryResultMap3"/>
     </resultMap>
     <resultMap id="productLowerCategoryResultMap3" type="LacunaMatata.Lacuna.dto.response.admin.product.RespLowerProductCategoryDto">
         <result property="productLowerCategoryId" column="product_lower_category_id" />
@@ -186,8 +186,8 @@
         update
             tb_consulting_detail
         set
-            consulting_detail_content_id = #{consultingDetailContentId}
-            repeat_count = #{repeatCount},
+            consulting_detail_content_id = #{consultingDetailContentId},
+            repeat_count = #{repeatCount}
         where
             consulting_detail_product_id = #{consultingDetailProductId}
     </update>
@@ -322,6 +322,7 @@
     <select id="getProductList" resultMap="productResultMap">
         select
             p.product_id,
+            p.product_product_upper_category_id,
             p.product_name,
             p.product_code,
             p.price,
@@ -369,7 +370,7 @@
     <select id="getProduct" resultMap="productResultMap">
         select
             p.product_id,
-            p.product_upper_category_id,
+            p.product_product_upper_category_id,
             p.product_lower_category_id,
             p.product_code,
             p.product_name,
@@ -400,7 +401,7 @@
             cd.consulting_detail_id,
             cd.consulting_detail_product_id,
             cd.consulting_detail_content_id,
-            cd.repeat_count
+            cd.repeat_count,
             cc.consulting_content_id,
             cc.name
         from

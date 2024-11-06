@@ -9,7 +9,7 @@ import java.util.Map;
 @Data
 public class ReqModifyProductDto {
     private int productId;
-    private int productUpperCategoryId;
+    private int productProductUpperCategoryId;
     private int productLowerCategoryId;
     private String productCode;
     private String productName;

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 public class ReqRegistProductDto {
-    private int productUpperCategoryId;
+    private int productProductUpperCategoryId;
     private int productLowerCategoryId;
     private String productCode;
     private String productName;

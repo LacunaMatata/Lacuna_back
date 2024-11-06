@@ -35,6 +35,7 @@ public class ProductDetailAspect {
         int productId = (int) proceedingJoinPoint.getArgs()[0];
 
         List<RespUpperProductCategoryAndLowerDto> productUpperAndLower = productManageMapper.getProductUpperAndLowerCategoryList();
+
         List<ConsultingContent> consultingContent = productManageMapper.getConsultingContent();
         RespProductRegistModalDto respProductRegistModalDto = RespProductRegistModalDto.builder()
                 .respUpperProductCategoryAndLowerDto(productUpperAndLower)
@@ -44,6 +45,7 @@ public class ProductDetailAspect {
         if (body instanceof RespProductDetailDto) {
 
             Product product = productManageMapper.getProduct(productId);
+            System.out.println(product);
             // 만약 컨설팅 관련 상품이면 컨설팅 내용만 담아서 보냄
             if(product.getProductUpperCategory().getProductUpperCategoryId() == 1) {
                 ConsultingDetail consultingDetail = productManageMapper.getConsultingDetail(productId);

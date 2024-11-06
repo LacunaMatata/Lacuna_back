@@ -231,7 +231,7 @@ public class ProductManageService {
         }
 
         Product product = Product.builder()
-                .productUpperCategoryId(dto.getProductUpperCategoryId())
+                .productProductUpperCategoryId(dto.getProductProductUpperCategoryId())
                 .productLowerCategoryId(dto.getProductLowerCategoryId())
                 .productCode(dto.getProductCode())
                 .productName(dto.getProductName())
@@ -247,7 +247,7 @@ public class ProductManageService {
 
         // Todo 상품 세부 정보 컨설팅 분류에 맞게 넣는거 알아서 짜봐여. (dto, enttiy 확인 및 수정 필요
         // Todo insert 된 id는 useGenerator 사용하면 build한 엔티티 변수에 들어있는 것을 사용하면 됨 (위 이미지 넣은 방법 참조)
-        switch (dto.getProductUpperCategoryId()) {
+        switch (dto.getProductProductUpperCategoryId()) {
             case 1:
                 ConsultingDetail consultingDetail = ConsultingDetail.builder()
                         .consultingDetailProductId(product.getProductId())
@@ -323,7 +323,7 @@ public class ProductManageService {
 
         Product product = Product.builder()
                 .productId(dto.getProductId())
-                .productUpperCategoryId(dto.getProductUpperCategoryId())
+                .productProductUpperCategoryId(dto.getProductProductUpperCategoryId())
                 .productLowerCategoryId(dto.getProductLowerCategoryId())
                 .productCode(dto.getProductCode())
                 .productName(dto.getProductName())
@@ -336,7 +336,7 @@ public class ProductManageService {
                 .build();
         productManageMapper.modifyProduct(product);
 
-        if(product.getProductUpperCategoryId() == 1) {
+        if(product.getProductProductUpperCategoryId() == 1) {
             ConsultingDetail consultingDetail = ConsultingDetail.builder()
                     .consultingDetailProductId(dto.getConsultingDetailProductId())
                     .consultingDetailContentId(dto.getConsultingContentId())
@@ -345,7 +345,7 @@ public class ProductManageService {
             productManageMapper.modifyConsultingDetail(consultingDetail);
         }
 
-        if(product.getProductUpperCategoryId() == 2) {
+        if(product.getProductProductUpperCategoryId() == 2) {
             CosmeticDetail cosmeticDetail = CosmeticDetail.builder()
                     .cosmeticDetailId(dto.getCosmeticDetailId())
                     .cosmeticDetailProductId(dto.getCosmeticDetailProductId())

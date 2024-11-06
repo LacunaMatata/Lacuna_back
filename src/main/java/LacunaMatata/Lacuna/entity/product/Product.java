@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 public class Product {
     private int productId;
-    private int productUpperCategoryId;
+    private int productProductUpperCategoryId;
     private int productLowerCategoryId;
     private String productCode;
     private String productName;
