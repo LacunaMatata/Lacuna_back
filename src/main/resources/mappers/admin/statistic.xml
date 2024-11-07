@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LacunaMatata.Lacuna.repository.admin.StatisticsMapper">
+    <select id="mbtiStatistic" resultType="LacunaMatata.Lacuna.dto.response.admin.statistic.RespMbtiStatisticCountDto">
+        select
+        count(*) as userCount,
+        sum(if(gender = 1, 1, 0)) as manCount,
+        sum(if(gender = 2, 1, 0)) as womanCount,
+        sum(if(year(birth) between year(date_add(now(), interval -18 year)) and year(date_add(now(), interval -9 year)), 1, 0)) as teenager,
+        sum(if(year(birth) between year(date_add(now(), interval -28 year)) and year(date_add(now(), interval -19 year)), 1, 0)) as twenties,
+        sum(if(year(birth) between year(date_add(now(), interval -38 year)) and year(date_add(now(), interval -29 year)), 1, 0)) as thirties,
+        sum(if(year(birth) between year(date_add(now(), interval -48 year)) and year(date_add(now(), interval -39 year)), 1, 0)) as forties,
+        sum(if(year(birth) between year(date_add(now(), interval -58 year)) and year(date_add(now(), interval -49 year)), 1, 0)) as fifties,
+        sum(if(year(birth) between year(date_add(now(), interval -8 year)) and year(date_add(now(), interval -0 year)), 1, if(year(birth) between year(date_add(now(), interval -200 year)) and year(date_add(now(), interval -59 year)), 1, 0))) as andOther
+        from
+        tb_mbti_response
+        where
+        create_date between #{startDate} and #{endDate}
+    </select>
+</mapper>
