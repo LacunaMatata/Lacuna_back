@@ -1,6 +1,6 @@
 package LacunaMatata.Lacuna.controller.admin;
 
-import LacunaMatata.Lacuna.dto.request.admin.mbti.ReqMbtiStatisticDto;
+import LacunaMatata.Lacuna.dto.request.admin.statistic.ReqMbtiStatisticDto;
 import LacunaMatata.Lacuna.service.admin.StatisticsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

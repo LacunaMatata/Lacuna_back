@@ -6,13 +6,20 @@ import lombok.Data;
 @Builder
 @Data
 public class RespMbtiStatisticCountDto {
-    private Integer userCount;
-    private Integer manCount;
-    private Integer womanCount;
-    private Integer teenager;
-    private Integer twenties;
-    private Integer thirties;
-    private Integer forties;
-    private Integer fifties;
-    private Integer andOther;
+    private Integer DRNT;
+    private Integer DRNW;
+    private Integer DRPT;
+    private Integer DRPW;
+    private Integer DSNT;
+    private Integer DSNW;
+    private Integer DSPT;
+    private Integer DSPW;
+    private Integer ORNT;
+    private Integer ORNW;
+    private Integer ORPT;
+    private Integer ORPW;
+    private Integer OSNT;
+    private Integer OSNW;
+    private Integer OSPT;
+    private Integer OSPW;
 }
