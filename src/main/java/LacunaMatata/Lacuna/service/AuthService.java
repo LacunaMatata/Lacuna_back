@@ -45,7 +45,6 @@ public class AuthService {
     // 일반 회원 가입
     @Transactional(rollbackFor = Exception.class)
     public void signup(ReqGeneralSignupDto dto) {
-        System.out.println(dto);
 
         User user = User.builder()
                 .username(dto.getUsername())
@@ -94,7 +93,6 @@ public class AuthService {
                 "userId", user.getUserId(),
                 "roleIdList", roleIdList
         );
-        System.out.println(params);
         userMapper.saveUserRoleMet(params);
     }
 
